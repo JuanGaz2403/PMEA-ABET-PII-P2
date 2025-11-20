@@ -1,0 +1,16 @@
+package udla.jgjbmp.pmeaabet.enums;
+
+public enum Caducidad {
+    FRUTAS_VERDURAS,
+    LACTEOS,
+    CARNES_AVES,
+    EMBUTIDOS_DELI,
+    PANADERIA,
+    GRANOS_PASTAS,
+    ENLATADOS_CONSERVAS,
+    SNACKS_BOTANAS,
+    BEBIDAS,
+    ASEO_PERSONAL,
+    LIMPIEZA_HOGAR,
+    MASCOTAS
+}
