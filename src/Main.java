@@ -1,5 +1,4 @@
-import udla.jgjbmp.pmeaabet.Producto;
-import udla.jgjbmp.pmeaabet.Proveedor;
+import udla.jgjbmp.pmeaabet.*;
 import udla.jgjbmp.pmeaabet.enums.Tipo;
 import udla.jgjbmp.pmeaabet.enums.Caducidad;
 import java.time.LocalDate;
@@ -97,7 +96,7 @@ void menuGestionProductos(Scanner scanner) {
 // Menú de Gestión de Inventario
 void menuGestionInventario(Scanner scanner) {
     int opcion;
-    
+
     do {
         System.out.println("\n========================================");
         System.out.println("      GESTIÓN DE INVENTARIO");
@@ -113,34 +112,43 @@ void menuGestionInventario(Scanner scanner) {
         System.out.print("Seleccione una opción: ");
         opcion = scanner.nextInt();
         scanner.nextLine();
-        
+
         switch (opcion) {
             case 1:
+                Inventario.verInventarioCompleto();
                 break;
-                
+
             case 2:
+                buscarProductoPorCodigo(scanner);
                 break;
-                
+
             case 3:
+                buscarProductoPorNombre(scanner);
                 break;
-                
+
             case 4:
+                // Pendiente de implementar
+                System.out.println("\nFuncionalidad en desarrollo...");
                 break;
-                
+
             case 5:
+                // Pendiente de implementar
+                System.out.println("\nFuncionalidad en desarrollo...");
                 break;
-                
+
             case 6:
+                // Pendiente de implementar
+                System.out.println("\nFuncionalidad en desarrollo...");
                 break;
-                
+
             case 0:
                 System.out.println("\nVolviendo al menú principal...");
                 break;
-                
+
             default:
                 System.out.println("\nOpción inválida. Por favor intente nuevamente.");
         }
-        
+
     } while (opcion != 0);
 }
 
@@ -152,6 +160,7 @@ void menuAdministracion(Scanner scanner) {
         System.out.println("\n========================================");
         System.out.println("         ADMINISTRACIÓN");
         System.out.println("========================================");
+        System.out.println("  Presupuesto actual: $" + String.format("%.2f", Administrador.getPresupuesto()));
         System.out.println("1. Vender Productos");
         System.out.println("0. Volver al Menú Principal");
         System.out.println("========================================");
@@ -161,6 +170,8 @@ void menuAdministracion(Scanner scanner) {
         
         switch (opcion) {
             case 1:
+                Administrador.procesarVenta(scanner);
+
                 break;
                 
             case 0:
@@ -326,6 +337,7 @@ void verTodosLosProductos() {
     System.out.println("\nTotal de productos: " + Producto.getListaProductos().size());
 }
 
+
 // Métodos de Gestión de Proveedores
 
 Proveedor seleccionarOCrearProveedor(Scanner scanner) {
@@ -389,4 +401,25 @@ Proveedor crearNuevoProveedor(Scanner scanner) {
     Proveedor.addProveedor(nuevoProveedor);
     
     return nuevoProveedor;
+}
+/**
+ * Método para buscar un producto por código
+ */
+void buscarProductoPorCodigo(Scanner scanner) {
+    System.out.println("\n--- Buscar Producto por Código ---");
+    System.out.print("Ingrese el código del producto: ");
+    String codigo = scanner.nextLine();
+
+    Inventario.buscarYMostrarPorCodigo(codigo);
+}
+
+/**
+ * Método para buscar un producto por nombre
+ */
+void buscarProductoPorNombre(Scanner scanner) {
+    System.out.println("\n--- Buscar Producto por Nombre ---");
+    System.out.print("Ingrese el nombre del producto (o parte del nombre): ");
+    String nombre = scanner.nextLine();
+
+    Inventario.buscarYMostrarPorNombre(nombre);
 }
